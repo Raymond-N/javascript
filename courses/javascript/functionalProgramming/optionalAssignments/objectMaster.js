@@ -24,8 +24,48 @@ const pokémon = Object.freeze([
     { "id": 148, "name": "Dragonair",  "types": ["dragon"] }
 ]);
 
-const bListPkmn = pokémon.filter( p => p.name[0] === "B" );
+const bListPkmn = pokémon.filter( p => p.name[0] === "B");
 console.log(bListPkmn);
 
 const pkmnIds = pokémon.map(p => p.id);
 console.log(pkmnIds);
+
+// 1.
+console.log("===== an array of pokémon objects where the id is evenly divisible by 3 =====");
+const pkmnIdsDivBy3 = pokémon.filter( p => p.id % 3 === 0);
+console.log(pkmnIdsDivBy3);
+
+// 2.
+console.log("===== an array of pokémon objects that are fire type =====");
+const fireTypePkmn = pokémon.filter( p => p.types.includes("fire"));
+console.log(fireTypePkmn);
+
+// 3.
+console.log("===== an array of pokémon objects that have more than one type =====");
+const moreThanOneTypePkmn = pokémon.filter(p => p.types.length > 1);
+console.log(moreThanOneTypePkmn);
+
+// 4.
+console.log("===== an array with just the names of the pokémon =====");
+const pkmnNames = pokémon.map(p => p.name);
+console.log(pkmnNames);
+
+// 5.
+console.log("===== an array with just the names of pokémon with an id greater than 99 =====");
+const pkmnNamesIdGreaterThan99 = pokémon.filter(p => p.id > 99).map(p => p.name);
+console.log(pkmnNamesIdGreaterThan99);
+
+// 6.
+console.log("===== an array with just the names of the pokémon whose only type is poison =====");
+const poisonPkmnNames = pokémon.filter(p => p.types.includes("poison")).filter(p => p.types.length < 2).map(p => p.name);
+console.log(poisonPkmnNames);
+
+// 7.
+console.log("===== an array containing just the first type of all the pokémon whose second type is flying =====");
+const flyingPkmnFirstType = pokémon.filter(p => p.types.includes("flying")).map(p => p.types[0]);
+console.log(flyingPkmnFirstType);
+
+// 8.
+console.log("===== a count of the number of pokémon that are normal type =====");
+const normalPkmnCount = pokémon.filter(p => p.types.includes("normal")).length;
+console.log(normalPkmnCount);
