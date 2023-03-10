@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Header = (props) => {
-    const { firstName, lastName } = props;
+    const { firstName, lastName } = props; 
     return (
         <div>
             <h1>
