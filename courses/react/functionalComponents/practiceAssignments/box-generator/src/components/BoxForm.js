@@ -1,29 +1,28 @@
 import React, {useState} from  'react';
 
 const BoxForm = (props) => {
-    const [color, setColor] = useState("");
-    const [height, setHeight] = useState(25);
-    const [width, setWidth] = useState(25);
 
-    const createBox = (e) => {
+    const {boxArray, setBoxArray} = props;
+
+    const [color, setColor] = useState("");
+
+    const submitHandler = (e) => {
         e.preventDefault();
 
-        const newBox = {
-            color: color,
-            height: height,
-            width: width
-        };
-        console.log("New box created", color, height, width);
+        setBoxArray([...boxArray, color]);
     };
 
     return(
-        <form onSubmit={createBox}>
-            <div>
-                <label>Color: </label> 
-                <input type="color" onChange={ (e) => setColor(e.target.value) } />
-            </div>
-            <input type="submit" value="Create Box" />
-        </form>
+        <div>
+            <form onSubmit={submitHandler}>
+                <div>
+                    <label>Color: </label>
+                    {/* change input type to color to use Color Chart */}
+                    <input type="text" onChange={(e) => setColor(e.target.value)} value={color}/>
+                </div>
+                <button>Add</button>
+            </form>
+        </div>
     );
 };
 
