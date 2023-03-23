@@ -10,6 +10,8 @@ const BoxForm = (props) => {
         e.preventDefault();
 
         setBoxArray([...boxArray, color]);
+        // add setColor to clear input
+        setColor("")
     };
 
     return(
