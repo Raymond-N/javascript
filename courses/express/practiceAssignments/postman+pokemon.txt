@@ -1,0 +1,68 @@
+1) https://pokeapi.co/api/v2/pokemon/1
+
+{
+    "abilities": [
+        {
+            "ability": {
+                "name": "overgrow",
+                "url": "https://pokeapi.co/api/v2/ability/65/"
+            },
+            "is_hidden": false,
+            "slot": 1
+        }, ... //Code removed for brevity
+
+2) https://pokeapi.co/api/v2/pokemon/charizard
+
+{
+    "abilities": [
+        {
+            "ability": {
+                "name": "blaze",
+                "url": "https://pokeapi.co/api/v2/ability/66/"
+            },
+            "is_hidden": false,
+            "slot": 1
+        }, ... //Code removed for brevity
+
+3) https://pokeapi.co/api/v2/pokemon/151
+
+ "base_experience": 300,
+    "forms": [
+        {
+            "name": "mew",
+            "url": "https://pokeapi.co/api/v2/pokemon-form/151/"
+        }
+    ],
+    "game_indices": [
+        {
+            "game_index": 21,
+            "version": {
+                "name": "red",
+                "url": "https://pokeapi.co/api/v2/version/1/"
+            }
+        }, ... //Code removed for brevity
+
+4) https://pokeapi.co/api/v2/pokemon
+
+{
+    "count": 1281,
+    "next": "https://pokeapi.co/api/v2/pokemon?offset=20&limit=20",
+    "previous": null,
+    "results": [
+        {
+            "name": "bulbasaur",
+            "url": "https://pokeapi.co/api/v2/pokemon/1/"
+        }, ...  //Code removed for brevity
+
+5) https://pokeapi.co/api/v2/pokemon/lugia
+
+{
+    "abilities": [
+        {
+            "ability": {
+                "name": "pressure",
+                "url": "https://pokeapi.co/api/v2/ability/46/"
+            },
+            "is_hidden": false,
+            "slot": 1
+        }, ... //Code removed for brevity
