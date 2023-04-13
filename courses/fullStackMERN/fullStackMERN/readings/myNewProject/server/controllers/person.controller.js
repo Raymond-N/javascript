@@ -32,3 +32,15 @@ module.exports.getPerson = (req, res) => {
         .then(person => res.json(person))
         .catch(err => res.json(err));
 }
+
+module.exports.updatePerson = (req, res) => {
+    Person.findOneAndUpdate({_id: req.params.id}, req.body, {new: true})
+        .then(updatedPerson => res.json(updatedPerson))
+        .catch(err => res.json(err))
+}
+
+module.exports.deletePerson = (req, res) => {
+    Person.deleteOne({_id: req.params.id}) //note: "id" here MUST match id in corresponding route
+        .then(deleteConfirmation => res.json(deleteConfirmation))
+        .catch(err => res.json(err))
+}
