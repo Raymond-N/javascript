@@ -3,23 +3,26 @@ import axios from 'axios';
 
 const ProductForm = (props) => {
 
-    const {products, setProducts} = props;
+    const [product, setProduct] = useState({
+        title: '',
+        price: 0,
+        description: ''
+    })
 
-    const [title, setTitle] = useState('');
-    const [price, setPrice] = useState(0);
-    const [description, setDescription] = useState('');
+    const changeHandler = (e) => {
+        setProduct({...product, [e.target.name]:e.target.value})
+    }
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8000/api/products', {
-            title,
-            price,
-            description
-        })
+        axios.post('http://localhost:8000/api/newProduct', product)
             .then(res => {
                 console.log(res);
-                console.log(res.data);
-                setProducts([...products, res.data]);
+                setProduct({
+                    title: '',
+                    price: 0,
+                    description: ''
+                })
             })
             .catch(err => console.log(err))
     }
@@ -28,17 +31,17 @@ const ProductForm = (props) => {
         <form onSubmit={onSubmitHandler}>
             <p>
                 <label>Title</label><br/>
-                <input type="text" onChange={(e) => setTitle(e.target.value)}/>
+                <input type="text" name="title" onChange={changeHandler} value={product.title}/>
             </p>
             <p>
                 <label>Price</label><br/>
-                <input type="number" onChange={(e) => setPrice(e.target.value)}/>
+                <input type="number" name="price" step=".01" onChange={changeHandler} value={product.price}/>
             </p>
             <p>
                 <label>Description</label><br/>
-                <input type="textarea" onChange={(e) => setDescription(e.target.value)}/>
+                <input type="textarea" name="description" onChange={changeHandler} value={product.description}/>
             </p>
-            <input type="submit"/>
+            <input type="submit" value="Create"/>
         </form>
     )
 }
