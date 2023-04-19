@@ -3,23 +3,29 @@ import axios from 'axios';
 
 const ProductForm = (props) => {
 
-    const {products, setProducts} = props;
+    const {productList, setProductList} = props;
 
-    const [title, setTitle] = useState('');
-    const [price, setPrice] = useState(0);
-    const [description, setDescription] = useState('');
+    const [product, setProduct] = useState({
+        title: '',
+        price: 0,
+        description: ''
+    })
+
+    const changeHandler = (e) => {
+        setProduct({...product, [e.target.name]:e.target.value})
+    }
 
     const submitHandler = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8000/api/newProduct', {
-            title,
-            price,
-            description
-        })
-            .then(res => {
+        axios.post('http://localhost:8000/api/newProduct', product)
+            .then((res) => {
                 console.log(res)
-                console.log(res.data)
-                setProducts([...products, res.data]);
+                setProduct({
+                    title: '',
+                    price: 0,
+                    description: ''
+                })
+                setProductList([...productList, res.data])
             })
             .catch(err => console.log(err))
     }
@@ -28,15 +34,15 @@ const ProductForm = (props) => {
         <form onSubmit={submitHandler}>
             <p>
                 <label>Title</label><br/>
-                <input type="text" name="title" onChange={(e) => setTitle(e.target.value)} />
+                <input type="text" name="title" onChange={changeHandler}  value={product.title}/>
             </p>
             <p>
                 <label>Price</label><br/>
-                <input type="number" name="price" step=".01" onChange={(e) => setPrice(e.target.value)} />
+                <input type="number" name="price" step=".01" onChange={changeHandler}  value={product.price} />
             </p>
             <p>
                 <label>Description</label><br/>
-                <input type="textarea" name="description" onChange={(e) => setDescription(e.target.value)} />
+                <input type="textarea" name="description" onChange={changeHandler}  value={product.description} />
             </p>
             <input type="submit" value="Create"/>
         </form>

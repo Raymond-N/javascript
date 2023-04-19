@@ -4,13 +4,13 @@ import axios from 'axios';
 
 const ProductList = (props) => {
 
-    const {products, setProducts} = props;
+    const {productList, setProductList} = props;
 
-    useEffect(()=> {
+    useEffect(() => {
         axios.get('http://localhost:8000/api/allProducts')
             .then((res) => {
-                console.log(res.data);
-                setProducts(res.data)
+                console.log(res);
+                setProductList(res.data)
             })
             .catch((err) => {
                 console.log(err);
@@ -21,10 +21,10 @@ const ProductList = (props) => {
         <div>
             <h1>All Products:</h1>
             {
-                products.map((product, index) => (
-                    <div key={index}>
+                productList.map((product, index) => (
+                    <div key={product._id}>
                         <p>
-                            <Link to={'/api/oneProduct/' + product._id}>{product.title}</Link>
+                            <Link to={`/api/oneProduct/${product._id}`}>{product.title}</Link>
                         </p>
                     </div>
                 ))

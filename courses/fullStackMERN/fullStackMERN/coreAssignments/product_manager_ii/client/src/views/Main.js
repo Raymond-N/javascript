@@ -5,14 +5,14 @@ import ProductList from '../components/ProductList';
 
 const Main = () => {
 
-    const [products, setProducts] = useState([]);
+    const [productList, setProductList] = useState([]);
 
     return (
         <div>
             <h1>Product Manager</h1>
-            <ProductForm products={products} setProducts={setProducts} />
+            <ProductForm productList={productList} setProductList={setProductList} />
             <hr/>
-            <ProductList products={products} setProducts={setProducts} />
+            <ProductList productList={productList} setProductList={setProductList} />
         </div>
     )
 }
