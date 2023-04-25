@@ -1,17 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import DeleteButton from './DeleteButton';
 
 const PersonList = (props) => {
 
-    const {removeFromDom, people, setPeople} = props;
-    const deletePerson = (personId) => {
-        axios.delete('http://localhost:8000/api/people/' + personId)
-            .then(res => {
-                removeFromDom(personId)
-            })
-            .catch(err => console.log(err))
-    }
+    const [people, setPeople] = useState([]);
     /* We deconstruct getter and setter which were passed down 
     via props by the parent component (app.js) to our child 
     component (PersonList.js). Now we can easily use the getter 
@@ -19,14 +13,12 @@ const PersonList = (props) => {
     
     useEffect(() => {
         axios.get('http://localhost:8000/api/people')
-        .then((res) => {
-            console.log(res.data);
-            setPeople(res.data);
-        })
-        .catch((err) => {
-            console.log(err);
-        })
+            .then(res => setPeople(res.data));
     }, [])
+
+    const removeFromDom = personId => {
+        setPeople(people.filter(person => person._id !== personId))
+    }
 
     return (
         <div>
@@ -42,9 +34,7 @@ const PersonList = (props) => {
                                 Edit
                             </Link>
                             |
-                            <button onClick={(e) => {deletePerson(person._id)}}>
-                                Delete
-                            </button> 
+                            <DeleteButton personId={person._id} successCallback={()=>removeFromDom(person._id)}/>
                         </div>
                     )
                 })
